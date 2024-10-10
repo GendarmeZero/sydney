@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsersController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,5 @@ require __DIR__.'/auth.php';
 
 
 //======sydney routes======
-ROUTE::get('/dashboard' , function (){
-    return view('/dashboard/dashboard');
-});
+Route::get('/dashboard', [UsersController::class, 'dashboard'])->name('dashboard');
+

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,6 +20,14 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',            // Added role
+        'hourly_paid',     // Added hourly paid
+        'weekly_paid',     // Added weekly paid
+        'monthly_paid',    // Added monthly paid
+        'yearly_paid',     // Added yearly paid
+        'address',         // Added address
+        'phone',           // Added phone
+        'department_id',   // Added department_id (foreign key)
     ];
 
     /**
@@ -40,6 +47,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'role' => 'string',  // Ensure role is cast as a string
         'password' => 'hashed',
     ];
 }
+
