@@ -1,0 +1,57 @@
+:root {
+    --color-1: #f8ede3;
+    --color-2: #dfd3c3;
+    --color-3: #d0b8a8;
+    --color-4: #8d493a;
+}
+body {
+    background-color: #cdb0a2 !important;
+}
+
+/*header with video*/
+
+.header-section {
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-section video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    filter: brightness(0.5); /* Darkens the video for better text readability */
+}
+
+.header-content {
+    z-index: 1; /* Ensures content appears above the video */
+}
+
+.header-content h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Optional shadow for better contrast */
+}
+
+.header-content p {
+    font-size: 1.25rem;
+}
+
+.header-content .btn {
+    margin-top: 20px;
+    padding: 10px 30px;
+    font-size: 1.25rem;
+}
+
+/*header with video end*/

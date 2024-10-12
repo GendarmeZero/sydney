@@ -20,14 +20,14 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role',            // Added role
-        'hourly_paid',     // Added hourly paid
-        'weekly_paid',     // Added weekly paid
-        'monthly_paid',    // Added monthly paid
-        'yearly_paid',     // Added yearly paid
-        'address',         // Added address
-        'phone',           // Added phone
-        'department_id',   // Added department_id (foreign key)
+        'role',
+        'hourly_paid',
+        'weekly_paid',
+        'monthly_paid',
+        'yearly_paid',
+        'address',
+        'phone',
+        'department_id',
     ];
 
     /**
