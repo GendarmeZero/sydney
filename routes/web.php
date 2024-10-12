@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\Employees;
 
 
 /*
@@ -18,7 +19,7 @@ use App\Http\Controllers\UsersController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 Route::get('/dashboard_old', function () {
     return view('dashboard');
@@ -34,5 +35,11 @@ require __DIR__.'/auth.php';
 
 
 //======sydney routes======
+
+//employee Crud
 Route::get('/dashboard', [UsersController::class, 'dashboard'])->name('dashboard');
+Route::get('/employees', [UsersController::class, 'show'])->name('dashboard.employees');
+Route::post('/employees/store', [UsersController::class, 'store'])->name('dashboard.employees.store');
+
+
 

@@ -18,6 +18,10 @@
 <!-- Page JS -->
 <script src="../assets/js/dashboards-analytics.js"></script>
 
+
+<!-- API JS -->
+<script src="../js/api.js"></script>
+
 <!-- Place this tag before closing body tag for github widget button. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 @yield('core')

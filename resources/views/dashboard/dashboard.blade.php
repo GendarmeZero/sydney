@@ -3,60 +3,62 @@
 <body>
 @include('dashboard.layouts.side')
 @include('dashboard.layouts.nav')
+
+{{--database show start--}}
+@foreach($users as $user)
+    @php
+        $userId = $user->id;
+        $userName = $user->name;
+    @endphp
+@endforeach
+{{--database show end--}}
+
 <div class="layout-page">
 
     <!-- Content wrapper -->
     <div class="content-wrapper">
         <!-- Content -->
 
-        <div class="container-xxl flex-grow-1 container-p-y">
-            <div class="content-wrapper">
-                <div class="container-xxl flex-grow-1 container-p-y">
-                    <h1>List of Users</h1>
-                    <table border="1" class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Department ID</th> <!-- Using department_id directly -->
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($users as $user)
-                            <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->role ?? 'un assigned yet'}}</td>
-                                <td>{{ $user->department_id ?? 'No Department' }}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+{{--Time, Weather API start--}}
 
-            @foreach($users as $user)
-                @php
-                 $userId = $user->id;
-                 $userName = $user->name;
-                 @endphp
-            @endforeach
-            <h1>{{ $user->name }}</h1>
+        <div>
+            <h4>Current Time</h4>
+            <p id="clockText">Loading time...</p>
+
+            <h4>Current Date</h4>
+            <p id="dateText">Loading date...</p>
+        </div>
+
+        <!-- Weather Section -->
+        <div>
+            <h4>Weather Information</h4>
+            <p id="weatherText">Loading weather data...</p>
+        </div>
+
+        <!-- Tips Section -->
+        <div>
+            <h4>Daily Tips</h4>
+            <p id="tipsText">Loading daily tips...</p>
+        </div>
+
+        {{--Time, Weather API end--}}
+
+
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <h1>{{ Auth::user()->name }}</h1>
             <div class="row">
                 <div class="col-xxl-8 mb-6 order-0">
                     <div class="card">
                         <div class="d-flex align-items-start row">
                             <div class="col-sm-7">
                                 <div class="card-body">
-                                    <h5 class="card-title text-primary mb-3">Congratulations John! 🎉</h5>
+                                    @auth
+                                        <h5 class="card-title text-primary mb-3">Welcome {{ Auth::user()->name }} 😊</h5>
+                                    @endauth
                                     <p class="mb-6">
-                                        You have done 72% more sales today.<br>Check your new badge in your profile.
+                                        another day another dollar.
                                     </p>
-
-                                    <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
+                                    <a href="javascript:;" class="btn btn-sm btn-outline-primary">View news</a>
                                 </div>
                             </div>
                             <div class="col-sm-5 text-center text-sm-left">
