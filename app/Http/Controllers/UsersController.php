@@ -28,7 +28,9 @@ class UsersController extends Controller
 
         return view('dashboard.employees.employees')
             ->with('users',$users)
-            ->with('adminCount',$adminCount)->with('employeeCount',$employeeCount)->with('managerCount',$managerCount);
+            ->with('adminCount',$adminCount)
+            ->with('employeeCount',$employeeCount)
+            ->with('managerCount',$managerCount);
     }
     public function store(Request $request)
     {
