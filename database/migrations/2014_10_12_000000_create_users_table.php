@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('hourly_paid')->default(0);
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
+            $table->enum('work_location', ['remotely', 'onsite'])->default('onsite');
             $table->enum('status', ['single', 'married', 'divorced'])->nullable();
             $table->unsignedBigInteger('department_id')->nullable();
 
@@ -40,4 +41,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('users');
     }
+
 };

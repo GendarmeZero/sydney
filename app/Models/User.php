@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'work_location',
         'hourly_paid',
         'weekly_paid',
         'monthly_paid',
@@ -53,5 +54,15 @@ class User extends Authenticatable
         'role' => 'string',  // Ensure role is cast as a string
         'password' => 'hashed',
     ];
+
+    ////Relation:
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
 }
 

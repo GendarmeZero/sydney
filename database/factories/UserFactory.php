@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Department;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -21,14 +22,23 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'name' => $this->faker->firstName,
+            'middleName' => $this->faker->firstName,
+            'lastName' => $this->faker->lastName,
+            'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'password' => Hash::make('password'),
+            'role' => $this->faker->randomElement(['manager', 'admin', 'employee']),
+            'hourly_paid' => $this->faker->numberBetween(10, 50),
+            'address' => $this->faker->address,
+            'phone' => $this->faker->phoneNumber,
+            'status' => $this->faker->randomElement(['single', 'married', 'divorced']),
+            'department_id' => Department::inRandomOrder()->first()->id ?? null,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 
