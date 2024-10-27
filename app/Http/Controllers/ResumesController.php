@@ -44,5 +44,15 @@ class ResumesController extends Controller
         $resume = Resume::findOrFail($id);
         return Storage::disk('public')->download($resume->filename, $resume->original_filename);
     }
+    public function destroy($id)
+    {
+        $resume = Resume::findOrFail($id);
+
+        Storage::disk('public')->delete($resume->filename);
+
+        $resume->delete();
+
+        return redirect()->route('resumes.index')->with('success', 'Resume deleted successfully!');
+    }
 }
 

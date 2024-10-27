@@ -107,7 +107,7 @@
 
             <!-- Users List Table -->
             <div class="container bg-card">
-                <div class="container bg-card d-flex justify-content-between align-items-center">
+                <div class=" bg-card d-flex justify-content-between align-items-center">
                     <h3>Employees</h3>
                     <button type="button" class="btn btn-primary">Add Employee</button>
                 </div>
@@ -176,6 +176,7 @@
                     </ul>
                 </nav>
             </div>
+        </div>
 
 
             <!-- / Content -->
@@ -200,7 +201,6 @@
 
 
                         <a href="https://themeselection.com/support/" target="_blank" class="footer-link d-none d-sm-inline-block">Support</a>
-
                     </div>
                 </div>
             </div>
@@ -211,6 +211,7 @@
         <div class="content-backdrop fade"></div>
     </div>
 </div>
+
 </body>
 @include('dashboard.layouts.core')
 
