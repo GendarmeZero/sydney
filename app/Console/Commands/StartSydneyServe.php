@@ -34,18 +34,23 @@ class StartSydneyServe extends Command
         if ($projectName === 'sydney' && $dbName === 'sydney') {
             $this->info('Starting the Laravel development server...');
 
-            // Create a process to start the Laravel serve command
+            // Create a process to run the php artisan serve command
             $process = new Process(['php', 'artisan', 'serve']);
 
-            // Remove TTY for Windows
+            // Remove TTY for Windows platforms
             if (DIRECTORY_SEPARATOR !== '\\') {
                 $process->setTty(true);
             }
 
+            // Remove the timeout (no timeout for the process)
+            $process->setTimeout(null);
+
+            // Run the process and output to the console
             $process->run(function ($type, $buffer) {
                 echo $buffer;
             });
 
+            // Check if the process was successful
             return $process->isSuccessful() ? Command::SUCCESS : Command::FAILURE;
         } else {
             $this->error('The project or database name is not "sydney".');
