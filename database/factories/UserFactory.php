@@ -30,6 +30,7 @@ class UserFactory extends Factory
             'lastName' => $this->faker->lastName,
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
+            'sex' => $this->faker->randomElement(['Male', 'Female']),
             'password' => Hash::make('password'),
             'role' => $this->faker->randomElement(['manager', 'admin', 'employee']),
             'hourly_paid' => $this->faker->numberBetween(10, 50),

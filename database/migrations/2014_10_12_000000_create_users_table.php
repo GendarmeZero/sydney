@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('sex',['Male','Female'])->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->enum('role', ['manager', 'admin', 'employee'])->default('employee');
@@ -31,6 +32,8 @@ return new class extends Migration
 
             // Foreign key
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null');
+
+
         });
     }
 

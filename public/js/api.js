@@ -28,7 +28,7 @@ function fetchWeather() {
             const weatherElement = document.getElementById('weatherText');
             const temperature = data.hourly.temperature_2m[0];
             const precipitation = data.hourly.precipitation[0];
-            weatherElement.textContent = `Temperature: ${temperature}°C, Precipitation: ${precipitation}mm`;
+            weatherElement.textContent = `Temperature: ${temperature}°C,`;
         })
         .catch(error => {
             console.error('Error fetching weather data:', error);

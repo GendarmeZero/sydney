@@ -183,14 +183,14 @@
 
 
         <!-- Footer -->
-        <footer class="content-footer footer bg-footer-theme">
+        <footer class="content-footer footer bg-cards text-dark">
             <div class="container-xxl">
                 <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
                     <div class="text-body">
                         © <script>
                             document.write(new Date().getFullYear())
 
-                        </script>2024, made with ❤️ by <a href="https://themeselection.com" target="_blank" class="footer-link">ThemeSelection</a>
+                        </script> - 2024, made with ❤️ by <a href="https://www.linkedin.com/in/ala-ayyalslman/" target="_blank" class="footer-link">Ala Ayyalslman</a>
                     </div>
                     <div class="d-none d-lg-inline-block">
 

@@ -14,20 +14,39 @@ class UsersController extends Controller
         $users = User::all();
 
 
-        return view('dashboard.dashboard')->with('users',$users);
+
+        //User data for statics
+        $maleCount = $users->where('sex', 'Male')->count();
+        $femaleCount = $users->where('sex', 'Female')->count();
+        $allUsersCount = User::all()->count();
+        $working = $users->where('employee_statuses','working')->count(); ;
+        $notWorking = $users->where('employee_statuses','not working')->count(); ;
+        $onVacation = $users->where('employee_statuses','on vacation')->count(); ;
+
+
+        return view('dashboard.dashboard')
+            ->with('users', $users)
+            ->with('maleCount', $maleCount)
+            ->with('femaleCount', $femaleCount)
+            ->with('allUsersCount', $allUsersCount)
+            ->with('working', $working)
+            ->with('notWorking', $notWorking)
+            ->with('onVacation', $onVacation);
     }
     public function show(Request $request)
     {
-        $users = User::paginate(10); // Paginate results (10 per page)
+        $users = User::paginate(10);
         $adminCount = User::where('role', 'admin')->count();
         $employeeCount = User::where('role', 'employee')->count();
         $managerCount = User::where('role', 'manager')->count();
+
 
         return view('dashboard.employees.employees')
             ->with('users', $users)
             ->with('adminCount', $adminCount)
             ->with('employeeCount', $employeeCount)
             ->with('managerCount', $managerCount);
+
     }
 
 // Edit user method

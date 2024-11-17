@@ -8,32 +8,28 @@
     </div>
 
     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-        <!-- Search -->
-        <div class="navbar-nav align-items-center">
-            <div class="nav-item d-flex align-items-center">
-                <i class="bx bx-search bx-md"></i>
-                <input
-                        type="text"
-                        class="form-control border-0 shadow-none ps-1 ps-sm-2"
-                        placeholder="Search..."
-                        aria-label="Search..." />
+        <!-- Navbar -->
+        <!-- weather Div -->
+        <div>
+            <div class="d-flex align-items-center w-100 justify-content-between">
+                <div class="avatar flex-shrink-0">
+                    <img src="../assets/img/icons/unicons/weather.png" alt="time" class="rounded">
+                </div>
+                <div class="text">
+                    <p class="mb-0">Today weather in Jordan</p>
+                    <p class="mb-1" id="weatherText">loading...</p>
+                </div>
+                <div>
+                    <p class="mb-1" id="clockText">loading...</p>
+                </div>
             </div>
         </div>
-        <!-- /Search -->
+
+
+        <!-- /Navbar -->
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
-            <!-- Place this tag where you want the button to render. -->
-            <li class="nav-item lh-1 me-4">
-                <a
-                        class="github-button"
-                        href="https://github.com/themeselection/sneat-html-admin-template-free"
-                        data-icon="octicon-star"
-                        data-size="large"
-                        data-show-count="true"
-                        aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
-                >Star</a
-                >
-            </li>
+          <h6 class="userNameNav">{{ Auth::user()->name }}</h6>
 
             <!-- User -->
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -55,8 +51,8 @@
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <h6 class="mb-0">John Doe</h6>
-                                    <small class="text-muted">Admin</small>
+                                    <h6 class="mb-0"> {{ Auth::user()->name }} </h6>
+                                    <small class="text-muted">{{ Auth::user()->role }}</small>
                                 </div>
                             </div>
                         </a>
@@ -68,9 +64,6 @@
                         <a class="dropdown-item" href="#">
                             <i class="bx bx-user bx-md me-3"></i><span>My Profile</span>
                         </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#"> <i class="bx bx-cog bx-md me-3"></i><span>Settings</span> </a>
                     </li>
                     <li>
                         <a class="dropdown-item" href="#">
