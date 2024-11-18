@@ -12,10 +12,13 @@ class EmployeeStatusFactory extends Factory
 
     public function definition()
     {
+        $user = User::factory()->create(); // Explicitly create and persist a User
+
         return [
-            'user_id' => User::factory(), // Creates or associates a user
+            'user_id' => $user->id,  // Use the persisted user ID
             'status' => $this->faker->randomElement(['working', 'not working', 'on vacation']),
             'updated_at' => now(),
         ];
     }
 }
+

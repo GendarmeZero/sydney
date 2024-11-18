@@ -1,90 +1,79 @@
-<nav
-        class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-        id="layout-navbar">
-    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0 d-xl-none">
-        <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
-            <i class="bx bx-menu bx-md"></i>
-        </a>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <!-- Navbar Brand (Logo or Name) -->
+        <a href="{{ route('index') }}" class="app-brand-text demo menu-text fw-bold ms-2">Sydney</a>
 
-    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-        <!-- Navbar -->
-        <!-- weather Div -->
-        <div>
-            <div class="d-flex align-items-center w-100 justify-content-between">
-                <div class="avatar flex-shrink-0">
-                    <img src="../assets/img/icons/unicons/weather.png" alt="time" class="rounded">
-                </div>
-                <div class="text">
-                    <p class="mb-0">Today weather in Jordan</p>
-                    <p class="mb-1" id="weatherText">loading...</p>
-                </div>
-                <div>
-                    <p class="mb-1" id="clockText">loading...</p>
-                </div>
-            </div>
-        </div>
+        <!-- Toggler Button for Mobile Screens -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-
-        <!-- /Navbar -->
-
-        <ul class="navbar-nav flex-row align-items-center ms-auto">
-          <h6 class="userNameNav">{{ Auth::user()->name }}</h6>
-
-            <!-- User -->
-            <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                <a
-                        class="nav-link dropdown-toggle hide-arrow p-0"
-                        href="javascript:void(0);"
-                        data-bs-toggle="dropdown">
-                    <div class="avatar avatar-online">
-                        <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+        <!-- Navbar Items -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <!-- Weather Icon (Replaced image with icon) -->
+                <li class="nav-item d-flex align-items-center me-3">
+                    <i class="bx bx-cloud me-2" style="font-size: 18px;"></i>
+                    <div class="text">
+                        <h6 class="mb-0" id="weatherText">loading...</h6>
                     </div>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <div class="d-flex">
-                                <div class="flex-shrink-0 me-3">
-                                    <div class="avatar avatar-online">
-                                        <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                </li>
+
+                <!-- Date and Time Info -->
+                <li class="nav-item d-flex align-items-center me-3">
+                    <i class="bx bx-calendar me-2" style="font-size: 18px;"></i>
+                    <div class="text">
+                        <h6 class="mb-0" id="dateText">loading...</h6>
+                    </div>
+                </li>
+                <li class="nav-item d-flex align-items-center me-3">
+                    <i class="bx bx-time me-2" style="font-size: 18px;"></i>
+                    <div class="text">
+                        <h6 class="mb-0" id="clockText">loading...</h6>
+                    </div>
+                </li>
+
+                <!-- User Info -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="../assets/img/avatars/1.png" alt="User Avatar" class="rounded-circle" width="40">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <!-- Display User's Name in the Dropdown Menu -->
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0 me-3">
+                                        <div class="avatar avatar-online">
+                                            <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">{{ Auth::user()->name }}</h6>
+                                        <small class="text-muted">{{ Auth::user()->role }}</small>
                                     </div>
                                 </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-0"> {{ Auth::user()->name }} </h6>
-                                    <small class="text-muted">{{ Auth::user()->role }}</small>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="dropdown-divider my-1"></div>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="bx bx-user bx-md me-3"></i><span>My Profile</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card bx-md me-3"></i
-                          ><span class="flex-grow-1 align-middle">Billing Plan</span>
-                          <span class="flex-shrink-0 badge rounded-pill bg-danger">4</span>
-                        </span>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="dropdown-divider my-1"></div>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="javascript:void(0);">
-                            <i class="bx bx-power-off bx-md me-3"></i><span>Log Out</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <!--/ User -->
-        </ul>
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">My Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Billing Plan</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <!-- Log Out -->
+                        <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a></li>
+                    </ul>
+                </li>
+
+                <!-- Username visible in Navbar -->
+                <li class="nav-item">
+                    <span class="nav-link">{{ Auth::user()->name }}</span>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
+
+<!-- Log Out Form -->
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>

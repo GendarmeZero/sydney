@@ -9,15 +9,17 @@ use Illuminate\Support\Facades\Storage;
 
 class ResumesController extends Controller
 {
+
+
     public function index()
     {
         $resumes = Resume::with('user')->get();
-        return view('resumes.index', compact('resumes'));
+        return view('dashboard.resumes.index', compact('resumes'));
     }
 
     public function create()
     {
-        return view('resumes.create');
+        return view('dashboard.resumes.create');
     }
 
     public function store(Request $request)
@@ -30,14 +32,17 @@ class ResumesController extends Controller
         $filename = time() . '_' . $file->getClientOriginalName();
         $filePath = $file->storeAs('resumes', $filename, 'public');
 
+        // Assuming you are storing resume information in the Resume model
         Resume::create([
             'user_id' => Auth::id(),
             'filename' => $filePath,
             'original_filename' => $file->getClientOriginalName(),
         ]);
 
-        return redirect()->route('resumes.index')->with('success', 'Resume uploaded successfully!');
+        // Return back to the profile page with a success message
+        return back()->with('success', 'Resume uploaded successfully!');
     }
+
 
     public function download($id)
     {
@@ -54,5 +59,7 @@ class ResumesController extends Controller
 
         return redirect()->route('resumes.index')->with('success', 'Resume deleted successfully!');
     }
+
+
 }
 

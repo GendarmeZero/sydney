@@ -17,7 +17,12 @@ class Resume extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class); // A resume belongs to one user
     }
+    public function additionalInformation()
+    {
+        return $this->hasOne(AdditionalInformation::class); // A resume can have one additional information
+    }
+
 }
 

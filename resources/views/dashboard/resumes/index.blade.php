@@ -31,7 +31,7 @@
     <table class="table table-bordered">
         <thead class="bg-white">
         <tr>
-            <th style="background-color: #e9ecef;">#</th> <!-- Darker background for first column -->
+            <th style="background-color: #e9ecef;">#</th>
             <th>Uploaded By</th>
             <th>Resume</th>
             <th>Actions</th>

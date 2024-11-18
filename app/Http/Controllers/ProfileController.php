@@ -8,53 +8,62 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Resume;
+use App\Models\AdditionalInformation;
 
 class ProfileController extends Controller
 {
+
+
     /**
-     * Display the user's profile form.
+     * Display the user's profile form, including resume info.
      */
-    public function edit(Request $request): View
+    public function showProfile(Request $request): View
     {
-        return view('profile.edit', [
+        // Retrieve the user's additional information and resume (if exists)
+        $additionalInfo = AdditionalInformation::where('user_id', $request->user()->id)->first();
+
+        return view('profile.show', [
             'user' => $request->user(),
+            'additionalInfo' => $additionalInfo, // Pass additional information
         ]);
     }
 
     /**
-     * Update the user's profile information.
+     * Upload resume for the user's profile.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function uploadResume(Request $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    }
-
-    /**
-     * Delete the user's account.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
+        $request->validate([
+            'resume' => 'required|file|mimes:pdf,doc,docx|max:2048',
+            'linked_user_id' => 'nullable|exists:users,id', // Validate linked_user_id, ensure it exists in the users table (optional)
         ]);
 
-        $user = $request->user();
+        // Get the authenticated user
+        $user = Auth::user();
 
-        Auth::logout();
+        // Store the uploaded resume file
+        $file = $request->file('resume');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $filePath = $file->storeAs('resumes', $filename, 'public');
 
-        $user->delete();
+        // Create the resume record in the resumes table
+        $resume = Resume::create([
+            'user_id' => $user->id,
+            'filename' => $filePath,
+            'original_filename' => $file->getClientOriginalName(),
+        ]);
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        // Get the linked_user_id from the request (if provided)
+        $linkedUserId = $request->input('linked_user_id');
 
-        return Redirect::to('/');
+        // Associate the resume with the user's additional information
+        $additionalInfo = AdditionalInformation::firstOrNew(['user_id' => $user->id]);
+        $additionalInfo->resume_id = $resume->id;
+        $additionalInfo->linked_user_id = $linkedUserId; // Store the linked user ID
+        $additionalInfo->save();
+
+        // Redirect back to the profile page with a success message
+        return back()->with('success', 'Resume uploaded and linked successfully!');
     }
 }

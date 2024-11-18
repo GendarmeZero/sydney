@@ -5,6 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Employees;
 use App\Http\Controllers\ResumesController;
+use App\Http\Controllers\EventController;
+use App\Models\AdditionalInformation;
+
+
+
 
 
 /*
@@ -48,11 +53,27 @@ Route::get('/users/{id}/edit', [UsersController::class, 'edit'])->name('users.ed
 Route::put('/users/{id}', [UsersController::class, 'update'])->name('users.update');
 Route::delete('/users/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
 Route::get('/users/{id}/profile', [UsersController::class, 'profile'])->name('users.profile');
+Route::get('users/create', [UsersController::class, 'create'])->name('users.create');
+Route::post('/users', [UsersController::class, 'store'])->name('users.store');
 
 //Resumes Crud
 Route::resource('resumes', ResumesController::class);
-Route::get('/resumes/{id}/download', [ResumesController::class, 'download'])->name('resumes.download');
+Route::get('/dashboard/resumes/{id}/download', [ResumesController::class, 'download'])->name('resumes.download');
+Route::post('/dashboard/resumes/upload', [ResumesController::class, 'store'])->name('resumes.store');
 
+
+
+//Events
+Route::resource('events', EventController::class);
+Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
+
+
+
+//User Profile
+Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.show');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 
 

@@ -2,13 +2,14 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
+     *
+     * @return void
      */
     public function run()
     {
@@ -20,6 +21,9 @@ class DatabaseSeeder extends Seeder
             TaskSeeder::class,
             SalarySeeder::class,
             AddressesTableSeeder::class,
+            EmployeeStatusSeeder::class,
+            EventSeeder::class,
         ]);
     }
 }
+

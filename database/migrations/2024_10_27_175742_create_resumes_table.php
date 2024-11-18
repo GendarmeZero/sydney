@@ -23,3 +23,4 @@ class CreateResumesTable extends Migration
     }
 }
 
+

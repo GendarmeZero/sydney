@@ -8,9 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function updateClock() {
     const clockElement = document.getElementById('clockText');
+    const dateElement = document.getElementById('dateText');
+
     const now = new Date();
-    clockElement.textContent = now.toLocaleTimeString();
+
+    const time = now.toLocaleTimeString();
+    clockElement.textContent = time;
+
+    const date = now.toLocaleDateString('en-GB');
+    dateElement.textContent = date;
 }
+
 
 function updateDate() {
     const dateElement = document.getElementById('dateText');

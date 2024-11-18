@@ -68,6 +68,15 @@ class User extends Authenticatable
     {
         return $this->hasOne(EmployeeStatus::class, 'user_id');
     }
+    public function additionalInformation()
+    {
+        return $this->hasOne(AdditionalInformation::class); // One user can have one additional information
+    }
+    public function resume()
+    {
+        return $this->hasOne(Resume::class); // One user can have one resume
+    }
+
 
 }
 

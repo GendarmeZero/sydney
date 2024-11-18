@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
+            $table->engine = 'InnoDB'; // Ensure InnoDB engine
             $table->id();
             $table->string('name');
             $table->string('middleName')->nullable();
@@ -19,7 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('sex',['Male','Female'])->nullable();
+            $table->enum('sex', ['Male', 'Female'])->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->enum('role', ['manager', 'admin', 'employee'])->default('employee');
@@ -30,12 +31,16 @@ return new class extends Migration
             $table->enum('status', ['single', 'married', 'divorced'])->nullable();
             $table->unsignedBigInteger('department_id')->nullable();
 
-            // Foreign key
+            // Foreign key for department
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null');
 
 
+
+
         });
+
     }
+
 
     /**
      * Reverse the migrations.

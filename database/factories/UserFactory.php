@@ -24,6 +24,8 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $departmentId = \App\Models\Department::inRandomOrder()->first()?->id; // safely access department_id
+
         return [
             'name' => $this->faker->firstName,
             'middleName' => $this->faker->firstName,
@@ -37,11 +39,12 @@ class UserFactory extends Factory
             'address' => $this->faker->address,
             'phone' => $this->faker->phoneNumber,
             'status' => $this->faker->randomElement(['single', 'married', 'divorced']),
-            'department_id' => Department::inRandomOrder()->first()->id ?? null,
+            'department_id' => $departmentId,  // Safely assign department_id
             'created_at' => now(),
             'updated_at' => now(),
         ];
     }
+
 
     /**
      * Indicate that the model's email address should be unverified.
