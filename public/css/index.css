@@ -1,20 +1,27 @@
+/* Root Colors */
 :root {
-    --color-1: #f8ede3;
-    --color-2: #dfd3c3;
-    --color-3: #d0b8a8;
-    --color-4: #8d493a;
+    --color-1: #ffffff; /* Clean white for the base */
+    --color-2: #f4f4f4; /* Soft grey for contrast */
+    --color-3: #e0e0e0; /* Neutral grey for borders or accents */
+    --color-4: #ffffff; /* Dark grey for text or strong accents */
 }
+
+/* Global Styles */
 body {
-    background-color: #cdb0a2 !important;
+    background-color: var(--color-2) !important; /* Light grey for a subtle background */
+    color: var(--color-4); /* Dark grey for text */
+    font-family: 'Arial', sans-serif; /* Modern sans-serif font */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/*header with video*/
-
+/* Header with Video */
 .header-section {
     position: relative;
     height: 100vh; /* Full viewport height */
     overflow: hidden;
-    color: white;
+    color: var(--color-1);
     text-align: center;
     display: flex;
     align-items: center;
@@ -31,27 +38,504 @@ body {
     height: auto;
     z-index: -1;
     transform: translate(-50%, -50%);
-    filter: brightness(0.5); /* Darkens the video for better text readability */
-}
-
-.header-content {
-    z-index: 1; /* Ensures content appears above the video */
+    filter: brightness(0.5); /* Original brightness setting */
 }
 
 .header-content h1 {
-    font-size: 4rem;
-    font-weight: bold;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Optional shadow for better contrast */
+    font-size: 5.5rem;
+    font-weight: 700;
+    color: var(--color-1); /* Keep the color as is, no glow */
+    transition: color 0.3s ease-in-out;
 }
 
 .header-content p {
-    font-size: 1.25rem;
+    font-size: 2.2rem;
+    line-height: 1.6;
+    color: var(--color-1);
+    opacity: 0.85;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.header-content p:hover {
+    opacity: 1; /* Slight opacity change on hover for emphasis */
 }
 
 .header-content .btn {
     margin-top: 20px;
-    padding: 10px 30px;
-    font-size: 1.25rem;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: var(--color-4);
+    border: 2px solid var(--color-1);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/*header with video end*/
+.header-content .btn:hover {
+    background-color: #007bff;
+    transform: scale(1.1);
+}
+
+.header-content .btn:active {
+    background-color: #0056b3;
+}
+
+
+
+/* Cards */
+.card {
+    background-color: var(--color-1);
+    border: 1px solid var(--color-3);
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 20px;
+    margin: 20px; /* Ensures spacing between multiple cards */
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+}
+.main-btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    align-content: center;
+    border: 2px solid var(--color-4); /* Default border with primary color */
+    border-radius: 5px;
+    color: var(--color-4); /* Text color matches the border */
+    background-color: transparent; /* Transparent background */
+    transition: all 0.3s ease; /* Smooth transitions */
+    text-align: center;
+    cursor: pointer;
+    height: 60px;
+    width: 30%;
+}
+
+.btn-primary {
+    background-color: transparent; /* Default transparent for primary buttons */
+    color: var(--color-4); /* Text color is the primary dark grey */
+}
+
+.btn-primary:hover {
+    background-color: #d2b38d;
+    color: #fff;;
+    transform: scale(1.05); /* Slight scaling effect for interactivity */
+}
+
+
+
+/* General Section Styling */
+section.py-5 {
+    padding-top: 80px; /* Make the section bigger */
+    padding-bottom: 80px;
+}
+.summary-sub-title{
+    font-family: "Just Another Hand", serif;
+    font-weight: 400;
+
+    font-style: normal;
+
+}
+
+h1.text-center, h4.text-center {
+    margin-bottom: 30px;
+}
+
+h1.text-center {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+h4.text-center {
+    font-size: 2.50rem;
+    color: #6c757d; /* Light grey for subtler text */
+}
+
+/* Card and Media Styling */
+.media-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.media-card img, .media-card video {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Ensure the image/video covers the container */
+}
+
+.col-md-6 {
+    margin-bottom: 30px;
+}
+
+/* Right Text Section */
+.col-md-6 h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.col-md-6 p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.col-md-6 .btn-primary {
+    font-size: 1.1rem;
+    padding: 12px 30px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.col-md-6 .btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 767px) {
+    .row.align-items-center {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+
+    .col-md-6 {
+        margin-bottom: 20px;
+    }
+
+    .col-md-6 h2 {
+        font-size: 1.75rem;
+    }
+}
+
+/* Section Styling */
+#Features {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+h2.text-center {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+/* Card Styling */
+.feature-card {
+    border: none;
+    border-radius: 15px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for a clean look */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px); /* Slight hover lift effect */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+.feature-card img {
+    border-radius: 15px 15px 0 0; /* Rounded top corners for the image */
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Ensure the image covers the area */
+}
+
+/* Card Body Styling */
+.feature-card .card-body {
+    padding: 20px;
+}
+
+.feature-card .card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.feature-card .card-text {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Button Styling */
+.feature-btn {
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 12px 30px;
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+}
+
+.feature-btn:hover {
+    background: linear-gradient(90deg, #00c6ff, #007bff);
+    transform: scale(1.05); /* Slight grow effect on hover */
+}
+
+.feature-btn:active {
+    background-color: #0056b3; /* Darker color on click */
+}
+
+
+
+
+/* Footer Styling */
+.footer {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.footer h5 {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.footer ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.footer ul li {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #007bff;
+}
+
+.footer .fab, .footer .fas {
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.footer .fab:hover, .footer .fas:hover {
+    color: #007bff; /* Blue color on hover */
+}
+
+.footer .text-center {
+    font-size: 1rem;
+}
+
+.footer .container {
+    max-width: 1200px;
+}
+
+/* Default button styling */
+.explore-btn {
+    padding: 15px 30px; /* Increased padding for a larger button */
+    border: 2px solid #ccc; /* Light gray border */
+    background-color: #f0f0f0; /* Light gray background */
+    color: #333; /* Text color */
+    font-size: 40px; /* Increased font size */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    border-radius: 20px; /* Slightly larger rounded corners */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
+
+}
+
+/* Hover effect */
+.explore-btn:hover {
+    background-color: #d2b38d; /* Light wood color */
+    cursor: pointer; /* Change cursor on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), inset 0 1px 8px rgba(255, 255, 255, 0.4); /* Shiny effect with outer and inner shadow */
+    background: linear-gradient(145deg, #d2b38d, #e4d39c); /* Gradient effect for shiny look */
+}
+
+
+.landing-page-girl-laptop img{
+    width: 50%;
+    height: 100%;
+    margin: 15px;
+}
+
+
+/* Custom Navbar Styling */
+.custom-navbar {
+    background-color: #fff;  /* Snow White background */
+    padding: 10px 20px; /* Add some padding for height */
+    border-bottom: 3px solid #D2B48C;  /* Light wood color accent line */
+}
+
+/* Navbar brand */
+.custom-navbar .navbar-brand {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #333;  /* Dark gray text for the brand */
+    font-size: 1.6rem;  /* Increase font size */
+}
+
+/* Navbar Links */
+.custom-navbar .nav-link {
+    color: #333 !important;  /* Dark gray for the links */
+    font-size: 1.1rem; /* Slightly bigger text */
+    margin-right: 15px; /* Space between items */
+    padding: 10px 15px;  /* Add padding for better click area */
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect with filling background from bottom to top */
+.custom-navbar .nav-link:hover {
+    color: #000 !important; /* Change text color to black on hover */
+    transform: translateY(-2px); /* Slight pop-up effect */
+}
+
+.custom-navbar .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;  /* Initially at the bottom of the element */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f4ece1;  /* Light wood color */
+    transform: scaleY(0);  /* Initially no background */
+    transform-origin: bottom center;  /* Origin of transformation is the bottom */
+    transition: transform 0.2s ease-in-out; /* Smooth animation */
+}
+
+/* On hover, make the background fill from bottom to top */
+.custom-navbar .nav-link:hover::before {
+    z-index: -1;
+    transform: scaleY(1);  /* Fill the background from bottom to top */
+    transform-origin: bottom center ;  /* Change origin to top-center for smooth fill */
+}
+
+/* Buttons Styling */
+.custom-navbar .btn-navbar {
+    color: #fff;
+    background-color: #D2B48C;  /* Light wood color for buttons */
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 1rem;
+    margin-left: 10px; /* Space between buttons */
+    transition: all 0.3s ease;
+}
+
+.custom-navbar .btn-navbar:hover {
+    background-color: #C49A6C;  /* Slightly darker light wood color when hovered */
+    color: white;
+    transform: translateY(-2px); /* Slight raise effect on hover */
+}
+
+/* Square Profile Button Styling */
+.custom-navbar .btn-profile {
+    width: 100px; /* Fixed width for square button */
+    height: 40px; /* Fixed height for square button */
+    padding: 0;
+    border-radius: 5px; /* Slightly rounded corners for square button */
+    font-size: 1rem;
+    color: #fff;
+    background-color: #D2B48C;  /* Light wood color for button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.custom-navbar .btn-profile:hover {
+    background-color: #C49A6C;  /* Darker wood color on hover */
+    transform: scale(1.05); /* Slight grow effect */
+}
+
+
+/* Container for scrolling */
+.companies-scroll-wrapper {
+    overflow: hidden; /* Hides the content outside the wrapper */
+    position: relative;
+}
+
+.companies-scroll {
+    display: flex; /* Flexbox to align items horizontally */
+    animation: scroll-left 15s linear infinite; /* Animation for scrolling */
+}
+
+.company-item {
+    flex: 0 0 auto; /* Prevents shrinking and ensures each item stays the same size */
+    margin-right: 30px; /* Spacing between items */
+    text-align: center;
+}
+
+.company-logo {
+    max-width: 100px; /* Set a max-width for logos */
+    max-height: 50px;
+    margin-bottom: 10px;
+}
+
+/* Animation to move the logos from left to right */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+/* Mobile View: Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .custom-navbar .navbar-nav {
+        text-align: center;
+    }
+
+    .custom-navbar .nav-link {
+        margin-right: 0;
+        padding: 10px 0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .feature-card {
+        margin-bottom: 30px;
+    }
+
+    .feature-card img {
+        height: 250px; /* Adjust image size for mobile */
+    }
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-content h1 {
+        font-size: 2.5rem; /* Adjust heading size for smaller screens */
+    }
+
+    .header-content p {
+        font-size: 1rem;
+    }
+
+    .header-content .btn {
+        font-size: 0.9rem;
+        padding: 8px 20px;
+    }
+}
+@media (max-width: 768px) {
+    .company-logo {
+        max-width: 80px;
+        max-height: 40px;
+    }
+}

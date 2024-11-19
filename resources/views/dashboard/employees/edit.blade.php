@@ -119,10 +119,10 @@
                     <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone', $user->phone) }}">
                 </div>
 
-                <!-- Department (Visible for all roles, optional for Managers) -->
+                <!-- Department -->
                 <div class="mb-3" id="department-field">
                     <label for="department" class="form-label">Department</label>
-                    <select class="form-select" id="department" name="department_id" required>
+                    <select class="form-select" id="department" name="department_id" >
                         <option value="">Select Department</option>
                         @foreach($departments as $department)
                             <option value="{{ $department->id }}" {{ old('department_id', $user->department_id) == $department->id ? 'selected' : '' }}>
@@ -131,7 +131,6 @@
                         @endforeach
                     </select>
                 </div>
-
 
                 <!-- Resume -->
                 <div class="mb-3">
