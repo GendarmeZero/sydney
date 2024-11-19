@@ -34,26 +34,45 @@
             </div>
         </div>
 
-        <!-- Footer Section -->
+        <!-- Footer Section with Action Buttons -->
         <div class="card-footer text-center p-4" style="background-color: #ffffff;">
-            <a href="{{ route('events.index') }}"
-               class="btn btn-primary"
-               style="background: linear-gradient(135deg, #007aff, #4a90e2); border: none; padding: 10px 30px; border-radius: 50px;">
-                <i class="fas fa-arrow-left"></i> Back to Events
-            </a>
-            <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline-block;">
-                @csrf
-                @method('DELETE')
-                <button type="submit"
-                        class="btn btn-danger"
-                        style="background: linear-gradient(135deg, #ff6b6b, #ff0000); border: none; padding: 10px 30px; border-radius: 50px; margin-left: 10px;"
-                        onclick="return confirm('Are you sure you want to delete this event?')">
-                    <i class="fas fa-trash-alt"></i> Delete
+            <div class="d-flex justify-content-center">
+                <a href="{{ route('events.index') }}"
+                   class="btn btn-primary"
+                   style="background: linear-gradient(135deg, #007aff, #4a90e2); border: none; padding: 10px 30px; border-radius: 50px;">
+                    <i class="fas fa-arrow-left"></i> Back to Events
+                </a>
+
+                <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline-block;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit"
+                            class="btn btn-danger"
+                            style="background: linear-gradient(135deg, #ff6b6b, #ff0000); border: none; padding: 10px 30px; border-radius: 50px; margin-left: 10px;"
+                            onclick="return confirm('Are you sure you want to delete this event?')">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </button>
+                </form>
+
+                <!-- Print Button -->
+                <button class="btn btn-outline-primary"
+                        style="background-color: white; color: #007aff; border: 2px solid #007aff; padding: 10px 30px; border-radius: 50px; margin-left: 10px;"
+                        onmouseover="this.style.backgroundColor='#000000'; this.style.color='white';"
+                        onmouseout="this.style.backgroundColor='white'; this.style.color='#007aff';"
+                        onclick="window.print();">
+                    <i class="fas fa-print"></i> Print Event
                 </button>
-            </form>
-        </div>
+
+            </div>
     </div>
 </div>
 
 @include('dashboard.layouts.core')
+
+<script>
+    // Optional: you can customize the print window settings if necessary
+    function printPage() {
+        window.print();
+    }
+</script>
 </body>

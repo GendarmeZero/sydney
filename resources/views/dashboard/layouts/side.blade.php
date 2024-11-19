@@ -54,6 +54,13 @@
             </a>
         </li>
 
+        <li class="menu-item">
+            <a href="{{route('departments.index')}}" class="menu-link">
+                <i class="menu-icon fa fa-users"></i> <!-- FontAwesome Users Icon -->
+                <div class="text-truncate">Departments</div>
+            </a>
+        </li>
+
         <!-- Components Section -->
         <li class="menu-header small text-uppercase section-title">
             <span class="menu-header-text">Components</span>

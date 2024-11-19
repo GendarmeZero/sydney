@@ -13,4 +13,10 @@ class Department extends Model
 
     protected $fillable = ['name'];
 
+    public function manager()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }
+

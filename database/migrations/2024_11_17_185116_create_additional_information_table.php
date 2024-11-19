@@ -18,9 +18,9 @@ class CreateAdditionalInformationTable extends Migration
 
             // Foreign key for resume
             $table->unsignedBigInteger('resume_id')->nullable();
-            $table->foreign('resume_id')->references('id')->on('resumes')->onDelete('set null'); // Set resume to null if deleted
+            $table->foreign('resume_id')->references('id')->on('resumes')->onDelete('set null');
 
-            $table->timestamps(); // Timestamps for created_at and updated_at
+            $table->timestamps();
         });
     }
 

@@ -12,6 +12,10 @@ class CreateDepartmentsTable extends Migration
             $table->id();
             $table->string('name', 50);
             $table->timestamps();
+            $table->decimal('budget', 15, 2)->nullable(); // Adjust type and precision as needed
+            $table->string('description')->nullable(); // Adding description column
+            $table->string('location')->nullable();
+
         });
     }
 
@@ -19,4 +23,4 @@ class CreateDepartmentsTable extends Migration
     {
         Schema::dropIfExists('departments');
     }
-};
+}

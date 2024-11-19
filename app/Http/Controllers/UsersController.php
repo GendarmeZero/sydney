@@ -10,11 +10,10 @@ use App\Models\AdditionalInformation;
 use App\Models\Resume;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
-
-
     public function dashboard()
     {
         // Eager load the 'employeeStatus' relationship for all users
@@ -62,7 +61,6 @@ class UsersController extends Controller
             ->with('latestResume', $latestResume); // Add latest resume data
     }
 
-
     public function show(Request $request)
     {
         $users = User::paginate(10);
@@ -87,25 +85,79 @@ class UsersController extends Controller
     // Edit user method
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        return view('dashboard.employees.edit')->with('user', $user);
+        $user = User::findOrFail($id);  // Find the user
+        $departments = Department::all();  // Fetch departments
+        $resumes = Resume::all();  // Fetch all resumes to display in the dropdown
+
+        return view('dashboard.employees.edit', compact('user', 'departments', 'resumes'));
     }
 
     // Update user method
     public function update(Request $request, $id)
     {
+        // Validate the input
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
+            'middleName' => 'nullable|string|max:255',
+            'lastName' => 'nullable|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'phone' => 'nullable|string|max:20',
-            'company' => 'nullable|string|max:255',
-            'country' => 'nullable|string|max:255',
             'role' => 'required|string',
+            'work_location' => 'nullable|string',
+            'hourly_paid' => 'nullable|numeric',
+            'status' => 'nullable|string',
+            'address' => 'nullable|string|max:500',
+            'department_id' => 'nullable|exists:departments,id', // Validate department
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'resume_id' => 'nullable|exists:resumes,id',  // Validate the resume_id
         ]);
 
+        // Find the user
         $user = User::findOrFail($id);
-        $user->update($validatedData);
 
+        // Update user fields
+        $user->update([
+            'name' => $validatedData['name'],
+            'middleName' => $validatedData['middleName'] ?? $user->middleName,
+            'lastName' => $validatedData['lastName'] ?? $user->lastName,
+            'email' => $validatedData['email'],
+            'phone' => $validatedData['phone'] ?? $user->phone,
+            'role' => $validatedData['role'],
+            'work_location' => $validatedData['work_location'] ?? $user->work_location,
+            'hourly_paid' => $validatedData['hourly_paid'] ?? $user->hourly_paid,
+            'status' => $validatedData['status'] ?? $user->status,
+            'address' => $validatedData['address'] ?? $user->address,
+            'department_id' => $validatedData['department_id'] ?? $user->department_id, // Update department_id
+        ]);
+
+        // Handle password update (only if provided)
+        if ($request->filled('password')) {
+            $user->update(['password' => Hash::make($request->password)]);
+        }
+
+        // Handle profile image upload (only if provided)
+        if ($request->hasFile('profile_image')) {
+            // Store the image
+            $imagePath = $request->file('profile_image')->store('profile_images', 'public');
+
+            // Save the image path to an additional information field or user model
+            if ($user->additionalInformation) {
+                $user->additionalInformation->update(['profile_image' => $imagePath]);
+            } else {
+                $user->additionalInformation()->create(['profile_image' => $imagePath]);
+            }
+        }
+
+        // Save the selected resume to additional_information
+        if ($request->has('resume_id')) {
+            if ($user->additionalInformation) {
+                $user->additionalInformation->update(['resume_id' => $request->resume_id]);
+            } else {
+                $user->additionalInformation()->create(['resume_id' => $request->resume_id]);
+            }
+        }
+
+        // Redirect back with a success message
         return redirect()->route('users.show')->with('success', 'User updated successfully!');
     }
 
@@ -155,8 +207,6 @@ class UsersController extends Controller
             'department_id' => $validatedData['department_id'],
         ]);
 
-
-
         // Handle the profile image upload (if exists)
         $profileImagePath = null;
         if ($request->hasFile('profile_image')) {
@@ -177,27 +227,37 @@ class UsersController extends Controller
         return redirect()->route('users.show')->with('success', 'User created successfully!');
     }
 
-
     // Profile method to show user details
     public function profile($id)
     {
         $user = User::findOrFail($id);
-
         $additionalInfo = $user->additionalInformation;
 
         return view('dashboard.employees.profile', compact('user', 'additionalInfo'));
     }
+
     public function showProfile()
     {
         // Get the authenticated user
         $user = Auth::user();
-
-        // Get the additional info for the user, including resume details
-        $additionalInfo = $user->additionalInfo; // Assuming you have a relationship 'additionalInfo' on the User model
+        $additionalInfo = $user->additionalInformation; // Assuming you have a relationship 'additionalInformation' on the User model
 
         // Return the profile view with the user and their additional info
         return view('dashboard.profile', compact('user', 'additionalInfo'));
     }
+    public function showDepartmentManager($departmentId)
+    {
+        $department = Department::findOrFail($departmentId);
+
+        // Fetch the manager (assuming there's a 'role' field in the User model)
+        $manager = User::where('role', 'manager')
+            ->where('department_id', $departmentId)
+            ->first();  // Get the first manager for the department
+
+        return view('dashboard.departments.show', compact('department', 'manager'));
+    }
+
+
 
 
 

@@ -33,13 +33,48 @@
                     </div>
                 </li>
 
+                <!-- Navbar Links for small screens (visible under 1200px) -->
+                <li class="nav-item d-xl-none">
+                    <a href="{{ route('dashboard') }}" class="nav-link">
+                        <i class="menu-icon fa fa-home"></i>
+                        Home
+                    </a>
+                </li>
+
+                <li class="nav-item d-xl-none">
+                    <a href="{{ route('events.index') }}" class="nav-link">
+                        <i class="menu-icon fa fa-calendar-alt"></i>
+                        Events
+                    </a>
+                </li>
+
+                <li class="nav-item d-xl-none">
+                    <a href="" class="nav-link">
+                        <i class="menu-icon fa fa-sticky-note"></i>
+                        Notes
+                    </a>
+                </li>
+
+                <li class="nav-item d-xl-none">
+                    <a href="{{ route('dashboard.employees') }}" class="nav-link">
+                        <i class="menu-icon fa fa-users"></i>
+                        Employees
+                    </a>
+                </li>
+
+                <li class="nav-item d-xl-none">
+                    <a href="{{ route('resumes.index') }}" class="nav-link">
+                        <i class="menu-icon fa fa-file-alt"></i>
+                        Resumes
+                    </a>
+                </li>
+
                 <!-- User Info -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="../assets/img/avatars/1.png" alt="User Avatar" class="rounded-circle" width="40">
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <!-- Display User's Name in the Dropdown Menu -->
                         <li>
                             <a class="dropdown-item" href="#">
                                 <div class="d-flex">
@@ -59,7 +94,6 @@
                         <li><a class="dropdown-item" href="#">My Profile</a></li>
                         <li><a class="dropdown-item" href="#">Billing Plan</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <!-- Log Out -->
                         <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a></li>
                     </ul>
                 </li>

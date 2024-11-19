@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -10,13 +11,11 @@ class CreateAchievementsTable extends Migration
     {
         Schema::create('achievements', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employee_id');
             $table->string('description', 255);
             $table->date('date');
+            $table->string('title', 255);
+            $table->string('image_path')->nullable();
             $table->timestamps();
-
-            // Foreign key to users table (employees)
-            $table->foreign('employee_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -24,4 +23,5 @@ class CreateAchievementsTable extends Migration
     {
         Schema::dropIfExists('achievements');
     }
-};
+}
+

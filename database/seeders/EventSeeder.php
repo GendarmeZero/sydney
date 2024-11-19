@@ -23,7 +23,7 @@ class EventSeeder extends Seeder
         }
 
         // Generate 50 fake events
-        Event::factory()->count(50)->create([
+        Event::factory()->count(10)->create([
             'user_id' => fn () => $users[array_rand($users)],
         ]);
     }

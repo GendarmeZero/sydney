@@ -103,6 +103,7 @@
                     <option value="">Select Department</option>
                     @foreach($departments as $department)
                         <option value="{{ $department->id }}">{{ $department->name }}</option>
+                        <option value="{{ $department->id }}">no department</option>
                     @endforeach
                 </select>
             </div>
@@ -111,12 +112,6 @@
             <div class="mb-3">
                 <label for="profile_image" class="form-label">Profile Image</label>
                 <input type="file" class="form-control" id="profile_image" name="profile_image">
-            </div>
-
-            <!-- Resume -->
-            <div class="mb-3">
-                <label for="resume" class="form-label">Resume</label>
-                <input type="file" class="form-control" id="resume" name="resume">
             </div>
 
             <button type="submit" class="btn btn-success">Add Employee</button>
