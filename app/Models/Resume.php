@@ -23,6 +23,11 @@ class Resume extends Model
     {
         return $this->hasOne(AdditionalInformation::class); // A resume can have one additional information
     }
+    public function interviews()
+    {
+        return $this->hasMany(Interview::class); // A resume can have many interviews
+    }
+
 
 }
 

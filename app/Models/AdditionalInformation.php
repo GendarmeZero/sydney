@@ -13,7 +13,14 @@ class AdditionalInformation extends Model
         'user_id',
         'profile_image',
         'resume_id',
-        'achievement_id',  // Include the 'achievement_id' here
+        'achievement_id',
+        'has_car' => 'nullable|string|in:yes,no',
+        'living_in',
+        'kids_number',
+        'spouse_name',
+    ];
+    protected $casts = [
+        'birth_date' => 'datetime',
     ];
 
     // Define the relationship to the User model

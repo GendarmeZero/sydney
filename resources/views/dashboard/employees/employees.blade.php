@@ -93,7 +93,7 @@
             <div class="card shadow-sm">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h3>Employees</h3>
-                    <button type="button" class="btn btn-primary" onclick="window.location='{{ route('users.create') }}'">Add Employee</button>
+                    <button type="button" class="btn mb-4" style="background-color: #e8d4b7;" onclick="window.location='{{ route('users.create') }}'">Add Employee</button>
                 </div>
 
                 <div class="card-body">
@@ -157,23 +157,6 @@
     </div>
 </div>
 
-<footer class="content-footer footer bg-cards text-dark">
-    <div class="container-xxl">
-        <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-            <div class="text-body">
-                © <script>document.write(new Date().getFullYear())</script> - 2024, made with ❤️ by <a href="https://www.linkedin.com/in/ala-ayyalslman/" target="_blank" class="footer-link">Ala Ayyalslman</a>
-            </div>
-            <div class="d-none d-lg-inline-block">
-                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-                <a href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/" target="_blank" class="footer-link me-4">Documentation</a>
-                <a href="https://themeselection.com/support/" target="_blank" class="footer-link d-none d-sm-inline-block">Support</a>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<div class="content-backdrop fade"></div>
 </body>
 
-@include('dashboard.layouts.core')
+@include('dashboard.layouts.footer')

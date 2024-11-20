@@ -76,6 +76,20 @@ class User extends Authenticatable
     {
         return $this->hasOne(Resume::class); // One user can have one resume
     }
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class, 'user_skills')
+            ->withPivot('proficiency')
+            ->withTimestamps();
+    }
+    public function interviews()
+    {
+        return $this->hasMany(Interview::class); // A user can have many interviews
+    }
+    public function achievements()
+    {
+        return $this->belongsToMany(Achievement::class, 'achievement_user');
+    }
 
 
 

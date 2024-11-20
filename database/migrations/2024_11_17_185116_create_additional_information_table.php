@@ -16,6 +16,12 @@ class CreateAdditionalInformationTable extends Migration
 
             $table->string('profile_image')->nullable(); // Store profile image path
 
+            $table->date('birth_date')->nullable(); // Birth date field
+            $table->enum('has_car', ['yes', 'no'])->nullable(); // Nullable enum
+            $table->enum('living_in', ['apartment', 'house'])->nullable(); // Living situation (apartment or house)
+            $table->integer('kids_number')->nullable(); // Nullable integer column for number of kids
+            $table->string('spouse_name')->nullable(); // Wife's name (nullable)
+
             // Foreign key for resume
             $table->unsignedBigInteger('resume_id')->nullable();
             $table->foreign('resume_id')->references('id')->on('resumes')->onDelete('set null');

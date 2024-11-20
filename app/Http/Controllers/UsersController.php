@@ -11,6 +11,8 @@ use App\Models\Resume;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Interview;
+
 
 class UsersController extends Controller
 {
@@ -46,6 +48,12 @@ class UsersController extends Controller
         // Fetch latest events
         $latestEvents = Event::orderBy('created_at', 'desc')->take(3)->get();
 
+        // Fetch the latest interviews
+        $latestInterviews = Interview::orderBy('created_at', 'desc')->take(3)->get();
+
+        // Fetch all departments
+        $departments = Department::all();
+
         return view('dashboard.dashboard')
             ->with('users', $users)
             ->with('maleCount', $maleCount)
@@ -58,7 +66,9 @@ class UsersController extends Controller
             ->with('employeeCount', $employeeCount)
             ->with('managerCount', $managerCount)
             ->with('latestEvents', $latestEvents)
-            ->with('latestResume', $latestResume); // Add latest resume data
+            ->with('latestResume', $latestResume)
+            ->with('latestInterviews', $latestInterviews)
+            ->with('departments', $departments);  // Pass departments to the view
     }
 
     public function show(Request $request)
@@ -110,10 +120,15 @@ class UsersController extends Controller
             'department_id' => 'nullable|exists:departments,id', // Validate department
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'resume_id' => 'nullable|exists:resumes,id',  // Validate the resume_id
+            'has_car' => 'nullable|string|in:yes,no', // Validation for new field 'has_car'
+            'living_in' => 'nullable|string|max:255', // Validation for new field 'living_in'
+            'kids_number' => 'nullable|numeric', // Validation for new field 'kids_number'
+            'wife_name' => 'nullable|string|max:255', // Validation for new field 'wife_name'
         ]);
 
         // Find the user
         $user = User::findOrFail($id);
+        $additionalInfo = $user->additionalInformation;
 
         // Update user fields
         $user->update([
@@ -127,7 +142,7 @@ class UsersController extends Controller
             'hourly_paid' => $validatedData['hourly_paid'] ?? $user->hourly_paid,
             'status' => $validatedData['status'] ?? $user->status,
             'address' => $validatedData['address'] ?? $user->address,
-            'department_id' => $validatedData['department_id'] ?? $user->department_id, // Update department_id
+            'department_id' => $validatedData['department_id'] ?? $user->department_id,
         ]);
 
         // Handle password update (only if provided)
@@ -137,29 +152,41 @@ class UsersController extends Controller
 
         // Handle profile image upload (only if provided)
         if ($request->hasFile('profile_image')) {
-            // Store the image
             $imagePath = $request->file('profile_image')->store('profile_images', 'public');
 
-            // Save the image path to an additional information field or user model
-            if ($user->additionalInformation) {
-                $user->additionalInformation->update(['profile_image' => $imagePath]);
+            if ($additionalInfo) {
+                $additionalInfo->update(['profile_image' => $imagePath]);
             } else {
                 $user->additionalInformation()->create(['profile_image' => $imagePath]);
             }
         }
 
-        // Save the selected resume to additional_information
+        // Save the selected resume to additional_information (only if provided)
         if ($request->has('resume_id')) {
-            if ($user->additionalInformation) {
-                $user->additionalInformation->update(['resume_id' => $request->resume_id]);
+            if ($additionalInfo) {
+                $additionalInfo->update(['resume_id' => $request->resume_id]);
             } else {
                 $user->additionalInformation()->create(['resume_id' => $request->resume_id]);
             }
         }
 
+        // Save new additional information (has_car, living_in, kids_number, wife_name)
+        if ($request->has('has_car') || $request->has('living_in') || $request->has('kids_number') || $request->has('wife_name')) {
+            $user->additionalInformation()->updateOrCreate(
+                ['user_id' => $user->id], // Ensure this is the correct relationship key
+                [
+                    'has_car' => $request->has('has_car') ? $request->has_car : null,
+                    'living_in' => $request->living_in,
+                    'kids_number' => $request->kids_number,
+                    'wife_name' => $request->wife_name,
+                ]
+            );
+        }
+
         // Redirect back with a success message
         return redirect()->route('users.show')->with('success', 'User updated successfully!');
     }
+
 
     // Delete user method
     public function destroy($id)
@@ -230,10 +257,14 @@ class UsersController extends Controller
     // Profile method to show user details
     public function profile($id)
     {
+        // Fetch the user and their additional information
         $user = User::findOrFail($id);
         $additionalInfo = $user->additionalInformation;
 
-        return view('dashboard.employees.profile', compact('user', 'additionalInfo'));
+        // Fetch the skills associated with the user
+        $skills = $user->skills;  // Assuming the relationship is set up
+
+        return view('dashboard.employees.profile', compact('user', 'additionalInfo', 'skills'));
     }
 
     public function showProfile()
@@ -256,6 +287,8 @@ class UsersController extends Controller
 
         return view('dashboard.departments.show', compact('department', 'manager'));
     }
+
+
 
 
 

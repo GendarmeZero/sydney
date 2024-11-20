@@ -2,6 +2,7 @@
 <body>
 @include('dashboard.layouts.side')
 @include('dashboard.layouts.nav')
+<div class="layout-page">
     <div class="container">
         <h1>Add New Employee</h1>
 
@@ -118,6 +119,7 @@
             <a href="{{ route('users.show') }}" class="btn btn-secondary">Back</a>
         </form>
     </div>
+     </div>
 
 </body>
-@include('dashboard.layouts.core')
+@include('dashboard.layouts.footer')

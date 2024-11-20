@@ -9,6 +9,7 @@
     width: 100%;
 }
 
+
 /* Card Styling */
 .card {
     border-radius: 8px;
@@ -236,6 +237,100 @@
 .section-title + ul {
     margin-top: 0;
 }
+/* Footer Styles */
+.content-footer {
+    background-color: #fff; /* White background */
+    border-top: 1px solid #e0e0e0; /* Light gray border */
+}
+
+.footer-container {
+    font-family: 'Arial', sans-serif; /* Clean font */
+}
+
+.footer-link {
+    text-decoration: none;
+    font-size: 14px; /* Smaller text size for links */
+    color: #6c757d; /* Muted gray color for links */
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #007bff; /* Highlight links on hover with blue */
+}
+
+.text-muted {
+    font-size: 14px; /* Smaller text for the footer content */
+    color: #6c757d; /* Soft gray text */
+}
+.note-card {
+    background-color: #fdf6e3; /* Paper-like background */
+    border: 1px solid #d8c8a2; /* Light border for paper feel */
+    border-radius: 10px;
+    position: relative;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.note-card:before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    background-color: #a48d5f;
+    border-radius: 50%;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.note-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.card-subtitle {
+    font-size: 1rem;
+}
+
+.card-footer {
+    border-top: 1px solid #e0e0e0;
+    background-color: #f8f9fa;
+    border-radius: 0 0 8px 8px;
+}
+
+.btn {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .d-none.d-lg-inline-block {
+        margin-top: 1rem;
+    }
+
+    .footer-link {
+        margin-bottom: 0.5rem;
+    }
+}
+
+
 @media print {
     button, a, .btn, #deleteButton {
         display: none !important;

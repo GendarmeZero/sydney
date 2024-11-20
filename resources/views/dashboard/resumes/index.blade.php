@@ -1,14 +1,13 @@
-@extends('dashboard.layouts.header')
 @include('dashboard.layouts.header')
 <body>
 @include('dashboard.layouts.side')
 @include('dashboard.layouts.nav')
+<div class="layout-page">
 
 <div class="container p-4" style="background-color: #f9f9f9; border-radius: 8px;">
     <h1 class="mb-4">Resumes</h1>
-
     <!-- Button to Open Modal -->
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#uploadResumeModal">
+    <button type="button" class="btn mb-4" style="background-color: #e8d4b7;" data-bs-toggle="modal" data-bs-target="#uploadResumeModal">
         Upload New Resume
     </button>
 
@@ -86,6 +85,7 @@
         </div>
     </div>
 </div>
+    </div>
 
 <!-- Include Bootstrap 5.0 JS and SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -116,3 +116,5 @@
 </script>
 
 </body>
+@include('dashboard.layouts.footer')
+

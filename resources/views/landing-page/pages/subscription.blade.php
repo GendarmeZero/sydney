@@ -26,7 +26,12 @@
                     <li><i class="far fa-check-circle"></i> Departments Management</li>
                 </ul>
                 <h4 class="plan-price">$19/month</h4>
-                <a href="#" class="btn btn-custom mt-3">Choose</a>
+                <form action="{{ route('choose.plan') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="plan" value="standard">
+                    <button type="submit" class="btn btn-custom mt-3">Choose</button>
+                </form>
+
             </div>
 
             <!-- Basic Plan (Previously Standard, Centered) -->

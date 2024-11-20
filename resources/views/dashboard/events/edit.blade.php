@@ -1,5 +1,9 @@
-@extends('dashboard.layouts.header')
+@include('dashboard.layouts.header')
 
+<body>
+@include('dashboard.layouts.side')
+@include('dashboard.layouts.nav')
+<div class="layout-page">
 
 <div class="container mt-4">
     <h1>Edit Event</h1>
@@ -38,5 +42,5 @@
         <button type="submit" class="btn btn-primary">Update Event</button>
     </form>
 </div>
+    </div>
 
-@include('dashboard.layouts.core')

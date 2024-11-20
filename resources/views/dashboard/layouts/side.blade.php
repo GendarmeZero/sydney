@@ -28,16 +28,18 @@
             </a>
         </li>
 
-        <li class="menu-item">
-            <a href="" class="menu-link">
-                <i class="menu-icon fa fa-sticky-note"></i> <!-- FontAwesome Sticky Note Icon -->
-                <div class="text-truncate">Notes</div>
-            </a>
+
+
+        <!-- Employees and Departments Section -->
+        <li class="menu-header small text-uppercase section-title">
+            <span class="menu-header-text">Employees and Departments </span>
         </li>
 
-        <!-- Employees Section -->
-        <li class="menu-header small text-uppercase section-title">
-            <span class="menu-header-text">Employees</span>
+        <li class="menu-item">
+            <a href="{{route('departments.index')}}" class="menu-link">
+                <i class="menu-icon fa fa-users"></i> <!-- FontAwesome Users Icon -->
+                <div class="text-truncate">Departments</div>
+            </a>
         </li>
 
         <li class="menu-item">
@@ -47,6 +49,11 @@
             </a>
         </li>
 
+        <!-- Data -->
+
+        <li class="menu-header small text-uppercase section-title">
+            <span class="menu-header-text">Data </span>
+        </li>
         <li class="menu-item">
             <a href="{{ route('resumes.index') }}" class="menu-link">
                 <i class="menu-icon fa fa-file-alt"></i> <!-- FontAwesome File Icon -->
@@ -55,11 +62,26 @@
         </li>
 
         <li class="menu-item">
-            <a href="{{route('departments.index')}}" class="menu-link">
-                <i class="menu-icon fa fa-users"></i> <!-- FontAwesome Users Icon -->
-                <div class="text-truncate">Departments</div>
+            <a href="{{ route('interviews.index') }}" class="menu-link">
+                <i class="menu-icon fa fa-file-alt"></i> <!-- FontAwesome File Icon -->
+                <div class="text-truncate">Interviews</div>
             </a>
         </li>
+
+        <li class="menu-item">
+            <a href="{{ route('achievements.index') }}" class="menu-link"> <!-- Using 'achievements.index' as route name -->
+                <i class="menu-icon fa fa-trophy"></i> <!-- FontAwesome Trophy Icon -->
+                <div class="text-truncate">Achievements</div>
+            </a>
+        </li>
+
+        <li class="menu-item">
+            <a href="{{ route('skills.index') }}" class="menu-link">
+                <i class="menu-icon fa fa-file-alt"></i> <!-- FontAwesome File Icon -->
+                <div class="text-truncate">Skills</div>
+            </a>
+        </li>
+
 
         <!-- Components Section -->
         <li class="menu-header small text-uppercase section-title">

@@ -18,11 +18,11 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             AchievementSeeder::class,
             SkillSeeder::class,
-            TaskSeeder::class,
             SalarySeeder::class,
             AddressesTableSeeder::class,
             EmployeeStatusSeeder::class,
             EventSeeder::class,
+            SkillSeeder::class,
         ]);
     }
 }

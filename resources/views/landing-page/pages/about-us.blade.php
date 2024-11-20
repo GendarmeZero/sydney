@@ -3,9 +3,9 @@
 @section('content')
     <div class="container mt-5">
         <!-- Header Section -->
-        <div class="text-center mb-4">
-            <h1 class="display-4 font-weight-bold">About Us</h1>
-            <p class="lead text-muted">Learn more about who we are and what we stand for.</p>
+        <div class="text-center mb-5">
+            <h1 class="display-1 font-weight-bold">About Us</h1>
+            <p class="lead text-muted">Learn more about the vision behind Sydney and the people driving it forward.</p>
         </div>
 
         <!-- Media Card Section with Video -->
@@ -19,10 +19,9 @@
 
             <!-- Text Section on the Right -->
             <div class="col-md-6">
-                <h2>Not the Only One, But the Best</h2>
-                <p>Take your HR management system to the next level with Sydney! Enjoy a modern, user-friendly design, a sleek interface, exciting new features, and much more!</p>
-                <p class="mb-5">Sydney is designed to help HR departments work more efficiently. From recruitment to payroll, employee management, performance reviews, and analytics, Sydney covers all aspects of HR with ease and precision.</p>
-                <a href="#" class="explore-btn summary-sub-title">Learn More</a>
+                <h2>Our Vision and Story</h2>
+                <p>Sydney was born out of a passion for empowering businesses with smarter HR solutions. As the owner and creator of Sydney, our goal is to revolutionize HR management through innovative tools that streamline processes, enhance employee experiences, and improve decision-making.</p>
+                <p class="mb-5">Our vision is to create an ecosystem where companies, no matter their size, can leverage the power of technology to elevate their human resources to new heights. Sydney is designed to be more than just a system – it’s a platform that grows with you and adapts to the ever-changing needs of the workforce.</p>
             </div>
         </div>
 
@@ -68,8 +67,37 @@
             </div>
         </div>
 
+        <!-- New Cards Section for Who We Are and What We Do -->
+        <div class="row mb-5">
+            <!-- Who We Are Card -->
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <i class="fas fa-users fa-3x text-info mb-3"></i>
+                        <h5 class="card-title font-weight-bold">Who We Are</h5>
+                        <p class="card-text text-muted">
+                            We are a team of passionate individuals dedicated to simplifying HR management for companies worldwide.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- What We Do Card -->
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <i class="fas fa-cogs fa-3x text-danger mb-3"></i>
+                        <h5 class="card-title font-weight-bold">What We Do</h5>
+                        <p class="card-text text-muted">
+                            From employee management to resume tracking, our solutions ensure efficiency and scalability for businesses of all sizes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Image Slider Section -->
-        <div class="row mt-5">
+        <div class="row mt-7">
             <div class="col-md-12">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -95,29 +123,19 @@
                 </div>
             </div>
         </div>
-
-        <!-- Additional Info Section -->
-        <div class="row mt-5">
-            <div class="col-md-6">
-                <h4 class="font-weight-bold">Who We Are</h4>
-                <p class="text-muted">
-                    We are a team of passionate individuals dedicated to simplifying HR management for companies worldwide.
-                </p>
-            </div>
-            <div class="col-md-6">
-                <h4 class="font-weight-bold">What We Do</h4>
-                <p class="text-muted">
-                    From employee management to resume tracking, our solutions ensure efficiency and scalability for businesses of all sizes.
-                </p>
-            </div>
-        </div>
     </div>
+    <!-- New Cards Section for Who We Are and What We Do -->
+    <div class="row mb-5">
 
-<!-- Add this CSS to style the slider -->
+
+
+
+
+    <!-- Add this CSS to style the slider -->
     <style>
         .slider-image {
             border: 2px solid #ddd; /* Add border around images */
-            max-height: 400px; /* Limit height to 200px */
+            height: 450px; /* Increased height for the slider images */
             object-fit: cover; /* Ensure images cover the available space */
         }
 

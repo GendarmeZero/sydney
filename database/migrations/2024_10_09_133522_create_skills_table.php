@@ -10,13 +10,8 @@ class CreateSkillsTable extends Migration
     {
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employee_id');
-            $table->string('skill', 100);
-            $table->enum('proficiency', ['beginner', 'intermediate', 'expert']);
+            $table->string('skill', 100)->unique(); // Unique skill names
             $table->timestamps();
-
-            // Foreign key to users table (employees)
-            $table->foreign('employee_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -24,5 +19,5 @@ class CreateSkillsTable extends Migration
     {
         Schema::dropIfExists('skills');
     }
-};
+}
 

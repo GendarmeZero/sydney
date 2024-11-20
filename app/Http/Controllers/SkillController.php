@@ -8,61 +8,56 @@ use Illuminate\Http\Request;
 
 class SkillController extends Controller
 {
-    public function index()
+    public function skillsList()
     {
-        // Fetch all skills and their associated users (if any)
-        $skills = Skill::with('user')->get();
-        $users = User::all(); // Fetch all users for assigning skills
-
-        return view('dashboard.skills.index', compact('skills', 'users'));
+        // Fetch all skills
+        $skills = Skill::all();
+        return view('dashboard.skills.index', compact('skills'));
     }
 
-    public function store(Request $request)
+    public function assignSkill(Request $request)
     {
+        // Validate the incoming request
         $request->validate([
-            'skill' => 'required|string|max:100',
+            'skill_id' => 'required|exists:skills,id',
+            'user_id' => 'required|exists:users,id',
             'proficiency' => 'required|in:beginner,intermediate,expert',
         ]);
 
-        // Create a new skill, no need to provide employee_id initially
-        Skill::create([
-            'skill' => $request->skill,
-            'proficiency' => $request->proficiency,
-            // No employee_id is required here
+        // Check if the user already has the skill assigned
+        $user = User::find($request->user_id);
+        $skillId = $request->skill_id;
+
+        // Check if the user already has this skill assigned
+        $existingSkill = $user->skills()->where('skill_id', $skillId)->first();
+
+        if ($existingSkill) {
+            // If the skill already exists for the user, update the proficiency
+            $user->skills()->updateExistingPivot($skillId, ['proficiency' => $request->proficiency]);
+        } else {
+            // If the skill does not exist for the user, attach it with the proficiency
+            $user->skills()->attach($skillId, ['proficiency' => $request->proficiency]);
+        }
+
+        // Return a response or redirect
+        return redirect()->back()->with('success', 'Skill assigned successfully!');
+    }
+
+    public function addSkill(Request $request)
+    {
+        $validated = $request->validate([
+            'skill' => 'required|string|max:255|unique:skills,skill',
         ]);
 
-        return redirect()->route('skills.index');
+        Skill::create($validated);
+
+        return redirect()->route('skills.index')->with('success', 'Skill added successfully!');
     }
-
-    public function delete($id)
+    public function showUsers(Skill $skill)
     {
-        $skill = Skill::findOrFail($id);
-        $skill->delete();
+        // Get all users with this skill
+        $users = $skill->users()->get();  // Assuming you have the relationship set up
 
-        return redirect()->route('skills.index');
-    }
-
-    public function assignUser(Request $request, $id)
-    {
-        // Validate that a user is selected
-        $request->validate([
-            'user_id' => 'required|exists:users,id', // Ensure user exists in the users table
-        ]);
-
-        $skill = Skill::findOrFail($id);
-
-        // Associate the selected user to the skill
-        $skill->user()->associate($request->user_id);
-        $skill->save();
-
-        return redirect()->route('skills.index');
-    }
-
-
-    public function assigned()
-    {
-        // Get all skills with their assigned users
-        $skills = Skill::with('user')->get();
-        return view('dashboard.skills.assigned', compact('skills'));
+        return view('dashboard.skills.users', compact('skill', 'users'));
     }
 }

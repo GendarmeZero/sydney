@@ -12,9 +12,11 @@ class Achievement extends Model
     protected $fillable = ['additional_information_id', 'description', 'date'];
 
     // Define the relationship with the AdditionalInformation model
-    public function additionalInformations()
+
+    public function users()
     {
-        return $this->belongsToMany(AdditionalInformation::class, 'additional_information_achievement');
+        return $this->belongsToMany(User::class, 'achievement_user');
     }
+
 
 }
