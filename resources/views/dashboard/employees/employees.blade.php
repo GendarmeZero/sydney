@@ -118,21 +118,32 @@
                                 <td>{{ $user->department ? $user->department->name : 'No department' }}</td>
                                 <td>{{ $user->work_location }}</td>
                                 <td>{{ $user->role }}</td>
-                                <td>
-                                    <a href="{{ route('users.profile', $user->id) }}" class="btn btn-info btn-sm">View</a>
-                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <td class="d-flex justify-content-start">
+                                    <!-- View Icon with FontAwesome -->
+                                    <a href="{{ route('users.profile', $user->id) }}" class="btn btn-info btn-icon rounded-circle me-2" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                                        <i class="fas fa-eye"></i> <!-- Eye Icon -->
+                                    </a>
+
+                                    <!-- Edit Icon -->
+                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-icon rounded-circle me-2" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                                        <i class="fas fa-edit"></i> <!-- Edit Icon -->
+                                    </a>
+
+                                    <!-- Delete Icon -->
                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline-block;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-icon rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 20px;" onclick="return confirm('Are you sure?');">
+                                            <i class="fas fa-trash"></i> <!-- Trash Icon for Delete -->
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
-                    </table>
 
-                    <!-- Pagination -->
+
+                        <!-- Pagination -->
                     <div class="d-flex justify-content-center mt-3">
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
@@ -159,4 +170,4 @@
 
 </body>
 
-@include('dashboard.layouts.footer')
+@include('dashboard.layouts.core')

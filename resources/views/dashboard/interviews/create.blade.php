@@ -3,6 +3,7 @@
 <body>
 @include('dashboard.layouts.side')
 @include('dashboard.layouts.nav')
+<div class="layout-page">
     <div class="container mt-5">
         <h1 class="mb-4">Create Interview</h1>
 
@@ -39,5 +40,6 @@
 
             <button type="submit" class="btn btn-success">Save Interview</button>
         </form>
+    </div>
     </div>
 @include('dashboard.layouts.core')
